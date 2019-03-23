@@ -1,0 +1,26 @@
+{
+    "title": "Saga",
+    "sequence": [
+        {
+            "bpm": 90,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 8,
+            "warn": 2
+        },
+        {
+            "bpm": 90,
+            "tempo": "4/4",
+            "click-divide": 2,
+            "bars": 8,
+            "warn": 2
+        },
+        {
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 2,
+            "bars": 32,
+            "warn": 2
+        }
+    ]
+}
