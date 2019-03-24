@@ -6,12 +6,11 @@ class PulseGenerator:
         self.subscribers = []
 
     def addSubscriber(self, subscribers):
-        self.subscribers.append(subscribers)
+        self.subscribers.extend(subscribers)
     
-    def run():
+    def run(self):
         while True:
             #generate tick on every 16th note at the current BPM
-            pass
-
             for sub in self.subscribers:
                 sub.doTick()
+            break
