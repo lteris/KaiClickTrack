@@ -1,10 +1,11 @@
 ''' Generate tick when triggered '''
 import TrackStream
-import wave
 import pyglet
+import time
 
 class SampleLib:
     def __enter__(self):
+        pyglet.options['audio'] = ('openal', 'pulse', 'silent')
         self.samples = [pyglet.resource.media("samples/Cowbell-1.wav", streaming = False),
             pyglet.resource.media("samples/Cowbell-2.wav", streaming = False),
             pyglet.resource.media("samples/Cowbell-3.wav", streaming = False),
@@ -29,9 +30,7 @@ class ToneEngine:
         pass
 
     def doTick(self):
-        pyglet.options['audio'] = ('openal', 'pulse', 'silent')
-        sound = pyglet.resource.media("samples/Cowbell-1.wav", streaming=False)
-        sound.play()
-        #with SampleLib() as samples:
-        #    samples.play(0)
-
+        with SampleLib() as samples:
+            #TODO - play next sound here
+            #samples.play(0)
+            print(str(self.stream.getCurrent()) + " ")

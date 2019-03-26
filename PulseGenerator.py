@@ -13,4 +13,3 @@ class PulseGenerator:
             #generate tick on every 16th note at the current BPM
             for sub in self.subscribers:
                 sub.doTick()
-            break
