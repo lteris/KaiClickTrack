@@ -33,4 +33,5 @@ class ToneEngine:
         with SampleLib() as samples:
             #TODO - play next sound here
             #samples.play(0)
-            print(str(self.stream.getCurrent()) + " ")
+            (bpm, (note, isEnd)) = self.stream.getCurrent()
+            print(str(bpm) + " " + str(note) + " " + str(isEnd))
