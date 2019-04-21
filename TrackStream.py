@@ -31,6 +31,7 @@ def barnotes(barcount, tempo="4/4", click_divide=1, tick_note = 16, warn = False
                 
             else:
                 divisor /= 2
+    return
 
 
 class TrackStream:
@@ -53,19 +54,20 @@ class TrackStream:
         crt_tick = self.__tick_generators[self.__crt_sequence_idx]
         
         while True:
-            bpm = crt_tick[0]
-            note = next(crt_tick[1])
-
-            #move to next sequence
-            if note == StopIteration:
+            try:
+                bpm = crt_tick[0]
+                note = next(crt_tick[1])
+                self.__crt_note = (bpm, note)
+                yield self.__crt_note
+            except StopIteration:
+                #move to next sequence
                 if self.__crt_sequence_idx < len(self.__tick_generators) - 1:
                     self.__crt_sequence_idx += 1
-                    note = next(crt_tick[1])
+                    crt_tick = self.__tick_generators[self.__crt_sequence_idx]
                 else:
                     return
-
-            self.__crt_note = (bpm, note)
-            yield self.__crt_note
+                    
+            
 
     def getCurrent(self):
         #return (note (16th, 8th, 4th, first_in_bar), warn sequence end)
