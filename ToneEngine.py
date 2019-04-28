@@ -3,6 +3,8 @@ import TrackStream
 import pyglet
 import time
 
+from termcolor import colored
+
 class SampleLib:
     def __enter__(self):
         pyglet.options['audio'] = ('openal', 'pulse', 'silent')
@@ -22,16 +24,12 @@ class SampleLib:
         pass
 
 class ToneEngine:
-    def __init__(self, stream):
-        self.stream = stream
-        self.__loadTrack()
-
-    def __loadTrack(self):
+    def __init__(self):
         pass
 
-    def doTick(self):
-        with SampleLib() as samples:
-            #TODO - play next sound here
-            #samples.play(0)
-            (bpm, (note, isEnd)) = self.stream.getCurrent()
-            print(str(bpm) + " " + str(note) + " " + str(isEnd))
+    def doTick(self, note, isFirstInBar, isEnd):
+        if note != None:
+            if isFirstInBar:
+                print(colored(str(note) + " " + str(isEnd), 'red'))
+            else:
+                print(str(note) + " " + str(isEnd))

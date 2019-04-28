@@ -13,8 +13,8 @@ if __name__ == "__main__":
         file = sys.argv[1]
 
     stream = TrackStream(file)
-    graphics = GraphicsEngine(stream)
-    tone = ToneEngine(stream)
+    graphics = GraphicsEngine()
+    tone = ToneEngine()
     pulse = PulseGenerator(stream)
 
     pulse.addSubscriber([tone, graphics])

@@ -2,12 +2,8 @@
 
 class GraphicsEngine:
 
-    def __init__(self, stream):
-        self.stream = stream
-        self.__load_track()
-
-    def __load_track(self):
+    def __init__(self):
         pass
 
-    def doTick(self):
+    def doTick(self, note, isFirstInBar, isEnd):
         pass
