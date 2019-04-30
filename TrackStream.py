@@ -2,6 +2,15 @@
 
 import json
 
+''' Type of sound to use in a bar
+'''
+class BarTickSound:
+    NORMAL = 0
+    WARN = 1
+    PAUSE = 2
+
+
+
 '''click_divide = division of the base note that is not silent; =2 on tempo */4 means play every 8th note
    tick_note = frequency of the pulse - tick_note=16 => every 16th note you get called
    barcount = number of bars in this sequnce
@@ -9,7 +18,7 @@ import json
    Return - the type of note to play for every tick_note: 4th, 8th ... or None if the note
    on the current tick is silent. 
 '''
-def barnotes(barcount, tempo="4/4", click_divide=1, tick_note = 16, warn = False):
+def barnotes(barcount, tempo="4/4", click_divide=1, tick_note = 16, warn = BarTickSound.NORMAL):
     tempo_supra, base_note = tempo_split(tempo)
 
     #number of ticks in the whole sequence
@@ -49,12 +58,12 @@ class TrackStream:
         self.__sequences = self.track["sequence"]
 
         # begin at sequnece 0 bar 0
-        self.__sequences[0]["bars"]
         self.__crt_sequence_idx = 0
-        self.__bar_idx = 0
+
         # create the generators for each sequence
-        self.__tick_generators = [(s["bpm"], tempo_split(s["tempo"])[1] ,barnotes(bars[0], s["tempo"], s["click-divide"], tick_note, bars[1])) for s in self.__sequences \
-            for bars in [(s["bars"] - s["warn"], False), (s["warn"], True)]]
+        self.__tick_generators = [(s["bpm"], tempo_split(s["tempo"])[1] ,barnotes(bars[0], s["tempo"], s["click-divide"], tick_note, bars[1])) \
+            for s in self.__sequences \
+            for bars in [(s["bars"], BarTickSound.NORMAL), (s.get("warn", 0), BarTickSound.WARN), (s.get("pause", 0), BarTickSound.PAUSE)] ]
 
     def nextNote(self):
         #return next 16th note

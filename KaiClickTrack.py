@@ -2,6 +2,7 @@ from TrackStream import TrackStream
 from ToneEngine import ToneEngine
 from GraphicsEngine import GraphicsEngine
 from PulseGenerator import PulseGenerator
+import time
 
 import sys
 
@@ -19,3 +20,5 @@ if __name__ == "__main__":
 
     pulse.addSubscriber([tone, graphics])
     pulse.run()
+            
+    time.sleep(2)

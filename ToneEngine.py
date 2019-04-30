@@ -1,5 +1,5 @@
 ''' Generate tick when triggered '''
-import TrackStream
+from TrackStream import BarTickSound
 import pyglet
 import time
 
@@ -21,11 +21,13 @@ class SampleLib:
         self._first_sample = pyglet.resource.media("samples/First.wav", streaming = False)
         self._pause_sample = pyglet.resource.media("samples/Pause.wav", streaming = False)
 
-    def play(self, division, firstInBar, warnEnd):
+    def play(self, division, firstInBar, barTick = BarTickSound.NORMAL):
         if firstInBar:
             self._first_sample.play()
-        elif warnEnd:
+        elif barTick == BarTickSound.WARN:
             self._warm_samples[division].play()
+        elif barTick == BarTickSound.PAUSE:
+            self._pause_sample.play()
         else:
             self._samples[division].play()
 
@@ -33,10 +35,10 @@ class ToneEngine:
     def __init__(self):
         self._sample_lib = SampleLib()
 
-    def doTick(self, note, isFirstInBar, isEnd):
+    def doTick(self, note, isFirstInBar, barTick = BarTickSound.NORMAL):
         if note != None:
-            self._sample_lib.play(note, isFirstInBar, isEnd)
+            self._sample_lib.play(note, isFirstInBar, barTick)
             if isFirstInBar:
-                print(colored(str(note) + " " + str(isEnd), 'red'))
+                print(colored(str(note) + " " + str(barTick), 'red'))
             else:
-                print(str(note) + " " + str(isEnd))
+                print(str(note) + " " + str(barTick))

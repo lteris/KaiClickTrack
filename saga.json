@@ -5,23 +5,25 @@
             "bpm": 100,
             "tempo": "4/4",
             "click-divide": 1,
-            "bars": 4,
-            "warn": 2
+            "bars": 1,
+            "warn": 1
+            
+
         },
         {
             "bpm": 100,
             "tempo": "4/4",
             "click-divide": 2,
-            "bars": 4,
-            "warn": 2,
+            "bars": 1,
+            "warn": 1,
             "pause":1
         },
         {
             "bpm": 100,
             "tempo": "4/4",
             "click-divide": 4,
-            "bars": 4,
-            "warn": 2
+            "bars": 1,
+            "warn": 1
         }
     ]
 }
