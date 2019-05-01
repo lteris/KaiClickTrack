@@ -9,6 +9,15 @@ class BarTickSound:
     WARN = 1
     PAUSE = 2
 
+''' Information about a sequence and the corresponding note generator
+'''
+class SequenceInfo:
+    def __init__(self, bpm, tempo, comment, barcount, click_divide, tick_note, tick_sound):
+        self._bpm = bpm
+        self._upper_note, self._base_note = tempo_split(tempo)
+        self._comment = comment
+        self._bar_notes = barnotes(barcount, tempo, click_divide, tick_note, tick_sound)
+
 
 
 '''click_divide = division of the base note that is not silent; =2 on tempo */4 means play every 8th note
@@ -61,25 +70,24 @@ class TrackStream:
         self.__crt_sequence_idx = 0
 
         # create the generators for each sequence
-        self.__tick_generators = [(s["bpm"], tempo_split(s["tempo"])[1] ,barnotes(bars[0], s["tempo"], s["click-divide"], tick_note, bars[1])) \
+        self.__tick_generators = [SequenceInfo(s["bpm"], s["tempo"], s.get("comment", " "), bars[0], s["click-divide"], tick_note, bars[1]) \
             for s in self.__sequences \
             for bars in [(s["bars"], BarTickSound.NORMAL), (s.get("warn", 0), BarTickSound.WARN), (s.get("pause", 0), BarTickSound.PAUSE)] ]
 
     def nextNote(self):
         #return next 16th note
         # (BPM, note_to_play, warn)
-        crt_tick = self.__tick_generators[self.__crt_sequence_idx]
+        seq_info = self.__tick_generators[self.__crt_sequence_idx]
         
         while True:
             try:
-                bpm = crt_tick[0]
-                base_note = crt_tick[1]
-                note = next(crt_tick[2])
-                yield (bpm, base_note, note)
+                note = next(seq_info._bar_notes)
+                yield (seq_info._bpm, seq_info._base_note, note)
             except StopIteration:
                 #move to next sequence
                 if self.__crt_sequence_idx < len(self.__tick_generators) - 1:
                     self.__crt_sequence_idx += 1
-                    crt_tick = self.__tick_generators[self.__crt_sequence_idx]
+                    seq_info = self.__tick_generators[self.__crt_sequence_idx]
+                    print(">>>>>>>>>>>>>>>>>>>> " + seq_info._comment + " <<<<<<<<<<<<<<<<<<<<<<<<<")
                 else:
                     return
