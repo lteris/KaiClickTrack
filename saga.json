@@ -2,28 +2,148 @@
     "title": "Saga",
     "sequence": [
         {
+            "comment": "percussion",
             "bpm": 100,
             "tempo": "4/4",
             "click-divide": 1,
-            "bars": 1,
-            "warn": 1
-            
-
+            "bars": 2,
+            "warn": 2
         },
         {
+            "comment": "hihat + percussion",
             "bpm": 100,
             "tempo": "4/4",
-            "click-divide": 2,
-            "bars": 1,
-            "warn": 1,
-            "pause":1
+            "click-divide": 1,
+            "bars": 2,
+            "warn": 2
         },
         {
+            "comment": "drums + perc",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 6,
+            "warn": 2
+        },
+        {
+            "comment": "drums + perc + piano",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 5,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "strophe",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 10,
+            "warn": 2
+        },
+        {
+            "comment": "bridge",
             "bpm": 100,
             "tempo": "4/4",
             "click-divide": 4,
-            "bars": 1,
-            "warn": 1
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "bridge",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 4,
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "strophe",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 10,
+            "warn": 2
+        },
+        {
+            "comment": "bridge",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "bridge",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "refrain",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 14,
+            "warn": 2
+        },
+        {
+            "comment": "impro 1",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 2,
+            "bars": 14,
+            "warn": 2
+        },
+        {
+            "comment": "impro 2",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 2,
+            "bars": 14,
+            "warn": 2,
+            "pause" : 1
+        },
+        {
+            "comment": "strophe",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 10,
+            "warn": 2
+        },
+        {
+            "comment": "bridge",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "bridge",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 2,
+            "warn": 2,
+            "pause": 1
+        },
+        {
+            "comment": "refrain",
+            "bpm": 100,
+            "tempo": "4/4",
+            "click-divide": 1,
+            "bars": 14,
+            "warn": 2
         }
     ]
 }
